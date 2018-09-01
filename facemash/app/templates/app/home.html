@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<style type="text/css">
+h1,h2 {
+    text-align: center;
+}
+div.main {
+    width: 50%;
+    min-width: 700px;
+    margin: 0 auto;
+}
+div.img-wrapper {
+    height: 300px;
+    display: inline;
+}
+#left {
+    float: left;
+}
+#right {
+    float: right;
+}
+img {
+    max-width: 300px;
+    max-height: 500px;
+}
+button {
+    height: 30px;
+    font-size: 20px;
+    margin: 0;
+
+}
+</style>
+<body>
+    <h1>Facemash</h1>
+    <h2>选择你觉得更好看的，这里可以查看排名: <a target="_blank" href="{% url 'app:ladder' %}">排行榜</a></h2>
+
+
+<div class="main">
+
+<form action="{% url 'app:vote' %}" method="POST">
+    {% csrf_token %}
+    <div id="left" class="img-wrapper">
+        <input type="hidden" name="winner" value="{{ img1.pk }}">
+        <input type="hidden" name="loser" value="{{ img2.pk }}">
+        <button>左边这个好</button><br>
+        <img src="{% static img1.url %}">
+        <p>{{ img1.rating }}</p>
+    </div>
+</form>
+
+
+<form action="{% url 'app:vote' %}" method="POST">
+    {% csrf_token %}
+    <div id="right" class="img-wrapper">
+        <input type="hidden" name="winner" value="{{ img2.pk }}">
+        <input type="hidden" name="loser" value="{{ img1.pk }}">
+        <button>右边这个好</button><br>
+        <img src="{% static img2.url %}">
+        <p>{{ img2.rating }}</p>
+    </div>
+</div>
+</form>
+
+    
+</body>
+</html>

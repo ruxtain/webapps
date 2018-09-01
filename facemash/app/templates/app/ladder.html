@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>天梯</title>
+</head>
+
+<style type="text/css">
+.wrapper {
+    width: 90%;
+}
+.ladder {
+    width: 500px;
+}
+</style>
+
+<body>
+{% for girl in girls %}
+    <div class="wrapper">
+        <h2>天梯分数：{{ girl.rating | stringformat:"0.2f"}} 排名：还没做这个功能</h2>
+        <img class="ladder" src="{% static girl.url %}">
+    </div>
+{% endfor %}
+
+<br />
+<div class="pagination">
+    <span class="step-links">
+        {% if girls.has_previous %}
+            <a href="?page={{ girls.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            第 {{ girls.number }} / {{ girls.paginator.num_pages }} 页.
+        </span>
+
+        {% if girls.has_next %}
+            <a href="?page={{ girls.next_page_number }}">下一页</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>
