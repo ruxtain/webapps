@@ -17,7 +17,7 @@
 <body>
 {% for girl in girls %}
     <div class="wrapper">
-        <h2>天梯分数：{{ girl.rating | stringformat:"0.2f"}} 排名：还没做这个功能</h2>
+        <h2>天梯分数：{{ girl.rating | stringformat:"0.2f"}}</h2>
         <img class="ladder" src="{% static girl.url %}">
     </div>
 {% endfor %}

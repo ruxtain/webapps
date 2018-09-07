@@ -4,4 +4,22 @@
 
 ![demo image](https://github.com/ruxtain/webapps/blob/master/facemash/demo.jpg)
 
-把图片方法到 facemash/app/static/app/images 里面，然后调整好 settings.py 里数据库配置，就可以用了。
+使用方法：
+
+1. 把图片放入 facemash/app/static/app/images 里面；
+
+2. 配置好数据库（settings.py）；
+
+3. 运行下面的命令：
+
+```
+# shell
+python manage.py shell
+
+# ipython
+In [1]: from app.models import *
+In [2]: Girl.sync()
+
+# shell
+python manage.py runserver
+```
